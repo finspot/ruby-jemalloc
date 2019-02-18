@@ -10,6 +10,7 @@ RUN apt-get update \
 		libyaml-dev \
 		procps \
 		zlib1g-dev \
+    libjemalloc-dev \
 	&& rm -rf /var/lib/apt/lists/*
 
 # skip installing gem documentation
@@ -72,6 +73,7 @@ RUN set -ex \
 		--build="$gnuArch" \
 		--disable-install-doc \
 		--enable-shared \
+    --with-jemalloc \
 	&& make -j "$(nproc)" \
 	&& make install \
 	\
@@ -83,6 +85,10 @@ RUN set -ex \
 	&& rm -r /usr/src/ruby \
 # rough smoke test
 	&& ruby --version && gem --version && bundle --version
+
+# Install latest bundler version
+ENV BUNDLER_VERSION 2.0.1
+RUN gem install bundler --version "$BUNDLER_VERSION"
 
 # install things globally, for great justice
 # and don't create ".bundle" in all our apps
