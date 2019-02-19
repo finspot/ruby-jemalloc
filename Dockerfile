@@ -88,7 +88,9 @@ RUN set -ex \
 
 # Install latest bundler version
 ENV BUNDLER_VERSION 2.0.1
-RUN gem install bundler --version "$BUNDLER_VERSION"
+RUN rm -rf /usr/local/lib/ruby/2.6.0/bundler* \
+    && rm -rf /usr/local/lib/ruby/gems/2.6.0/gems/bundler-* \
+    && gem install bundler --version "$BUNDLER_VERSION"
 
 # install things globally, for great justice
 # and don't create ".bundle" in all our apps
