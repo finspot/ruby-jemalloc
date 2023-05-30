@@ -1,7 +1,7 @@
 # Release a new version
 
 ## Releases 
-Find SHA [here](https://www.ruby-lang.org/en/news/2022/04/12/ruby-2-7-6-released/)
+Find SHA [here](https://www.ruby-lang.org/en/news/2022/04/12/ruby-2-7-6-released/) (tar.xz)
 Update env vars in `Dockerfile`
 
 Then build image and push it
